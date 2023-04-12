@@ -2,9 +2,11 @@ extends CharacterBody2D
 
 var speed = 200.0
 var gravity = 20
+var jump = 400
 
 func _physics_process(delta):
 	Move(delta)
+	Jump()
 	velocity.y += gravity
 	move_and_slide()
 	
@@ -26,3 +28,7 @@ func Move(delta):
 	if movement == 0.0:
 		velocity.x = 0.0
 		$anim.play("Idle")
+
+func Jump():
+	if Input.is_action_just_pressed("ui_jump"):
+		velocity.y -= jump
